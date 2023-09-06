@@ -1,5 +1,3 @@
-
-
 function SenhaConfirm(event){
     var password = document.querySelector("#password");
     var confirmPassword = document.querySelector("#confirmPassword");
@@ -22,3 +20,15 @@ function Clean() {
     passwordInput.value = "";
     confirmPasswordInput.value = "";
 }
+$("#limpar").click(function() {
+    alert('jquery acionado');
+});
+// $("#msg").text(function() {
+//     var msg = $("#msg").text();
+//     console.log(msg.text());
+//     // if(msg.text() = ''){
+//     //     msg.addClass('active');
+//     // }else{
+//     //     msg.removeClass('active');
+//     // }
+// });
