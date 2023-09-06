@@ -70,24 +70,24 @@
                     $id = (int)$_GET['delete'];
                     $pdoInstance->exec("DELETE FROM usuario WHERE id=$id");
                 }
-                if(isset($_GET['editar'])){
+                // if(isset($_GET['editar'])){
 
-                    $id = (int)$_GET['editar'];
+                //     $id = (int)$_GET['editar'];
 
-                    echo $id;
-                    // try {
-                    //     $stmt = $pdoInstance->prepare('INSERT INTO usuario(nome, email, telefone, senha) VALUES(:nome, :email, :tel, :password)');
-                    //     $stmt->execute(array(
-                    //     ':nome' => $name,
-                    //     ':email' => $email,
-                    //     ':tel' => $tel,
-                    //     ':password' => $password
-                    //     ));
-                    //     // echo $stmt->rowCount();
-                    // } catch(PDOException $e) {
-                    //     echo 'Error: ' . $e->getMessage();
-                    // }
-                }
+                //     echo $id;
+                //     // try {
+                //     //     $stmt = $pdoInstance->prepare('INSERT INTO usuario(nome, email, telefone, senha) VALUES(:nome, :email, :tel, :password)');
+                //     //     $stmt->execute(array(
+                //     //     ':nome' => $name,
+                //     //     ':email' => $email,
+                //     //     ':tel' => $tel,
+                //     //     ':password' => $password
+                //     //     ));
+                //     //     // echo $stmt->rowCount();
+                //     // } catch(PDOException $e) {
+                //     //     echo 'Error: ' . $e->getMessage();
+                //     // }
+                // }
             ?>
         </span>
         <form action="index.php" method="POST">
@@ -137,7 +137,7 @@
                                 echo '<td>'.$row['nome'].'</td>';
                                 echo '<td>'.$row['email'].'</td>';
                                 echo '<td>'.$row['telefone'].'</td>';
-                                echo '<td><a class="btn btn-outline-danger" href="?delete='.$row['id'].'"><i class="fa-solid fa-trash"></i></a> | <a class="btn btn-outline-secondary" href="index.php?id='.$row['id'].'"><i class="fa-solid fa-pen"></i></a></td>';
+                                echo '<td><a class="btn btn-outline-danger" href="?delete='.$row['id'].'"><i class="fa-solid fa-trash"></i></a> | <a class="btn btn-outline-secondary" href="edit.php?id='.$row['id'].'"><i class="fa-solid fa-pen"></i></a></td>';
                                 echo '</tr>';
                                 $count++;
                             }

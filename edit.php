@@ -27,8 +27,8 @@
                 $pdoInstance = $conexao->getConnection();
 
                 // ações de crud
-                if(!empty($_GET['editar'])){
-                    $id = $_GET['editar'];
+                if(!empty($_GET['id'])){
+                    $id = $_GET['id'];
 
                     $sql = "SELECT * FROM usuario WHERE id=$id";
                     $result = $pdoInstance->prepare($sql);
@@ -66,23 +66,26 @@
                     }
                 }
                 // ações de crud
-                if(isset($_GET['editar'])){
-
-                    $id = (int)$_GET['editar'];
-
-                    echo $id;
-                    // try {
-                    //     $stmt = $pdoInstance->prepare('INSERT INTO usuario(nome, email, telefone, senha) VALUES(:nome, :email, :tel, :password)');
-                    //     $stmt->execute(array(
-                    //     ':nome' => $name,
-                    //     ':email' => $email,
-                    //     ':tel' => $tel,
-                    //     ':password' => $password
-                    //     ));
-                    //     // echo $stmt->rowCount();
-                    // } catch(PDOException $e) {
-                    //     echo 'Error: ' . $e->getMessage();
-                    // }
+                if(isset($_POST['editar'])){
+                    try {
+                        $id = $_POST['id'];
+                        $name = $_POST['name'];
+                        $email = $_POST['email'];
+                        $tel = $_POST['tel'];
+                        $password = $_POST['password'];
+                        
+                        $stmt = $pdoInstance->prepare('UPDATE usuario SET nome=:nome, email=:email, telefone=:tel, senha=:password WHERE id=:id');
+                        $stmt->execute(array(
+                        ':id' => $id,
+                        ':nome' => $name,
+                        ':email' => $email,
+                        ':tel' => $tel,
+                        ':password' => $password
+                        ));
+                        header('Location: index.php');
+                    } catch(PDOException $e) {
+                        echo 'Error: ' . $e->getMessage();
+                    }
                 }
             ?>
         </span>
@@ -90,6 +93,7 @@
             <h1 class="text-center">Adicionar usuário</h1>
             <div class="col-6 container d-flex p-2">
                 <div class="col-6 d-flex flex-column me-2" style="gap: 1rem;">
+                    <input type="text" name="id" id="id" class="form-control" placeholder="id:" required value="<?php if(isset($result_user['id'])){echo $result_user['id'];} ?>" style="visibility: hidden; display: none;">
                     <input type="text" name="name" id="name" class="form-control" placeholder="Nome:" required value="<?php if(isset($result_user['nome'])){echo $result_user['nome'];} ?>">
                     <input type="email" name="email" id="email" class="form-control" placeholder="E-mail:" required value="<?php if(isset($result_user['email'])){echo $result_user['email'];} ?>">
                     <input type="tel" name="tel" id="tel" class="form-control" placeholder="Telefone:" value="<?php if(isset($result_user['telefone'])){echo $result_user['telefone'];} ?>">
