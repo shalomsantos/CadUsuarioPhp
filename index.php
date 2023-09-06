@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -11,13 +10,16 @@
     <title>.::PHP::.</title>
 </head>
 <body>
-    <div>
+    <div class="main">
         <?php
+            //importando arquivo de conexão
             include_once('config.php'); 
-                            
+
+            //criando instancia da classe e chamando metodo que retornar um objeto da conexão
             $conexao = new Connection();
             $pdoInstance = $conexao->getConnection();
-            
+
+            //ações de crud
             if(!empty($_GET['id'])){
                 $id = $_GET['id'];
 
@@ -65,13 +67,28 @@
                 $id = (int)$_GET['delete'];
                 $pdoInstance->exec("DELETE FROM usuario WHERE id=$id");
             }
-            if(isset($_GET['editar'])){
-                $id = (int)$_GET['editar'];
-                $result = $pdoInstance->exec("SELECT nome FROM usuario WHERE id=$id");
-                if($result){
-                    echo "Encontramos: ".$result;
+
+            if(isset($_POST['editar'])){
+                $id = $_POST['editar'];
+
+                if(!empty($id)){
+                    $name = $_POST['name']; 
+                    $email = $_POST['email'];
+                    $tel = $_POST['tel'];
+                    $password = $_POST['password'];
+    
+    
+                    $result = $pdoInstance->prepare("UPDATE usuario SET nome=:nome, emaiL=:email, telefone=:telefone, senha=:senha WHERE id=:id");
+    
+                    $result->execute(array(
+                        ':id' => $id,
+                        ':nome' => $name,
+                        ':email' => $email,
+                        ':tel' => $tel,
+                        ':password' => $password
+                    ));
                 }else{
-                    echo "Erro na busca do Id: ".$id;
+                    echo "algo deu errado no if para realizar o update";
                 }
             }
         ?>
@@ -83,11 +100,11 @@
                 <input type="email" name="email" id="email" placeholder="E-mail:" required value="<?php if(isset($result_user['email'])){echo $result_user['email'];} ?>">
                 <input type="tel" name="tel" id="tel" placeholder="Telefone:" value="<?php if(isset($result_user['telefone'])){echo $result_user['telefone'];} ?>">
                 <input type="password" name="password" id="password" placeholder="Senha" required value="<?php if(isset($result_user['senha'])){echo $result_user['senha'];} ?>">
-                <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Senha confirm:" required>
+                <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Senha confirm:" required value="<?php if(isset($result_user['senha'])){echo $result_user['senha'];} ?>">
                 <div>
-                    <button type="submit" name="submit" id="submit" onclick="SenhaConfirm(event)">Adicionar</button>
-                    <button>Editar</button>
-                    <button type="button" onclick="Clean()"><i class="fa-solid fa-broom"></i></button>
+                    <button class="btn" type="submit" name="submit" id="submit" onclick="SenhaConfirm(event)">Adicionar</button>
+                    <button class="btn" type="submit" href="?editar=<?php echo $result_user['id'];?>">Editar</button>
+                    <button class="btn" type="button" onclick="Clean()"><i class="fa-solid fa-broom"></i></button>
                 </div>
             </div>
         </form>
@@ -105,9 +122,12 @@
             <tbody>
                 <tr>
                     <?php
+                        //realizando consulta(retornando tudo) na instancia aberta anteriormente
                         $sql = $pdoInstance->prepare('SELECT * FROM usuario');
                         $sql->execute();
                         $fechUsuarios = $sql->fetchAll();
+
+                        //se ouver registro neste a linha será populada com os dados
                         if ($fechUsuarios) {
                             $count = 1;
                             foreach ($fechUsuarios as $row) {
