@@ -1,9 +1,11 @@
 # XAMPP + PHP + MYSQL
- 
+@Desenvolvedor:.
+Shalom Pereira dos santos
 ## Introdução
 
-apartir do clone dos arquivos no path: CadUsuarioPhp/, recortar conteúdo de dentro desta pasta para C:\xampp\htdocs, ligar o servidor apache e acessar localhost.
+- Apartir do clone dos arquivos no path: CadUsuarioPhp/, recortar conteúdo de dentro desta pasta para C:\xampp\htdocs, ligar o servidor apache e acessar localhost.
 
+- CRUD usando PDO para execuções de instruções sql.
 
 ## Critérios de Avaliação 
 
