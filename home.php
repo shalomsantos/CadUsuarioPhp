@@ -6,8 +6,6 @@
     <!-- meu css e js -->
     <link rel="stylesheet" href="/css/style.css">
     <script type="text/javascript" src="/js/script.js" defer></script>
-    <!-- jquey -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" defer></script>
     <!-- boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" defer>
     <!-- fontwasome -->
@@ -41,59 +39,43 @@
                 // ações de crud
                 if(isset($_POST['submit'])){
 
-                    $name = $_POST['name'];
-                    $email = $_POST['email'];
-                    $tel = $_POST['tel'];
-                    $password = $_POST['password'];
-
-                    if($name OR $email OR $password != ''){
-                        
-                        try {
-                            $stmt = $pdoInstance->prepare('INSERT INTO usuario(nome, email, telefone, senha) VALUES(:nome, :email, :tel, :password)');
-                            $stmt->execute(array(
-                            ':nome' => $name,
-                            ':email' => $email,
-                            ':tel' => $tel,
-                            ':password' => $password
-                            ));
-                            // echo $stmt->rowCount();
-                        } catch(PDOException $e) {
-                            echo 'Error: ' . $e->getMessage();
-                        }
-                    }
-                    else{
-                        echo "dados insuficientes para realizar cadastro!";
-                    }
-                }
-                // ações de crud
-                if(isset($_POST['editar'])){
-                    try {
-                        $id = $_POST['id'];
+                    if(isset($_POST['name'])){
+                        echo "Usuário adicionado com sucesso!";
                         $name = $_POST['name'];
                         $email = $_POST['email'];
                         $tel = $_POST['tel'];
                         $password = $_POST['password'];
-                        
-                        $stmt = $pdoInstance->prepare('UPDATE usuario SET nome=:nome, email=:email, telefone=:tel, senha=:password WHERE id=:id');
-                        $stmt->execute(array(
-                        ':id' => $id,
-                        ':nome' => $name,
-                        ':email' => $email,
-                        ':tel' => $tel,
-                        ':password' => $password
-                        ));
-                        header('Location: home.php');
-                    } catch(PDOException $e) {
-                        echo 'Error: ' . $e->getMessage();
+
+                        if($name OR $email OR $password != ''){
+                            
+                            try {
+                                $stmt = $pdoInstance->prepare('INSERT INTO usuario(nome, email, telefone, senha) VALUES(:nome, :email, :tel, :password)');
+                                $stmt->execute(array(
+                                ':nome' => $name,
+                                ':email' => $email,
+                                ':tel' => $tel,
+                                ':password' => $password
+                                ));
+                            } catch(PDOException $e) {
+                                echo 'Error: ' . $e->getMessage();
+                            }
+                        }
+                        else{
+                            echo "dados insuficientes para realizar cadastro!";
+                        }
                     }
+                }
+                // ações de crud
+                if(isset($_GET['delete'])){
+                    $id = (int)$_GET['delete'];
+                    $pdoInstance->exec("DELETE FROM usuario WHERE id=$id");
                 }
             ?>
         </span>
-        <form action="edit.php" method="POST">
+        <form action="home.php" method="POST">
             <h1 class="text-center">Adicionar usuário</h1>
             <div class="col-6 container d-flex p-2">
                 <div class="col-6 d-flex flex-column me-2" style="gap: 1rem;">
-                    <input type="text" name="id" id="id" class="form-control" placeholder="id:" required value="<?php if(isset($result_user['id'])){echo $result_user['id'];} ?>" style="visibility: hidden; display: none;">
                     <input type="text" name="name" id="name" class="form-control" placeholder="Nome:" required value="<?php if(isset($result_user['nome'])){echo $result_user['nome'];} ?>">
                     <input type="email" name="email" id="email" class="form-control" placeholder="E-mail:" required value="<?php if(isset($result_user['email'])){echo $result_user['email'];} ?>">
                     <input type="tel" name="tel" id="tel" class="form-control" placeholder="Telefone:" value="<?php if(isset($result_user['telefone'])){echo $result_user['telefone'];} ?>">
@@ -102,13 +84,56 @@
                     <input type="password" name="password" id="password" class="form-control" placeholder="Senha" required value="<?php if(isset($result_user['senha'])){echo $result_user['senha'];} ?>">
                     <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Senha confirm:" required value="<?php if(isset($result_user['senha'])){echo $result_user['senha'];} ?>">
                     <div>
+                        <button class="btn btn-outline-success" type="submit" name="submit" id="submit" onclick="SenhaConfirm(event)">Adicionar</button>
                         <button class="btn btn-outline-primary" type="submit" name="editar" id="editar">Editar</button>
                         <button class="btn btn-outline-primary" type="button" onclick="Clean()" id="limpar"><i class="fa-solid fa-broom"></i></button>
                     </div>
                 </div>
             </div>
         </form>
+
+        <table>
+            <theade>
+                <tr>
+                    <th>Nº</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>...</th>
+                </tr>
+            </theade>
+            <tbody>
+                <tr>
+                    <?php
+                        //realizando consulta(retornando tudo) na instancia aberta anteriormente
+                        $sql = $pdoInstance->prepare('SELECT * FROM usuario');
+                        $sql->execute();
+                        $fechUsuarios = $sql->fetchAll();
+
+                        //se ouver registro neste a linha será populada com os dados
+                        if ($fechUsuarios) {
+                            $count = 1;
+                            foreach ($fechUsuarios as $row) {
+                                echo '<tr>';
+                                echo '<td>'.$row['id'].'</td>';
+                                echo '<td>'.$row['nome'].'</td>';
+                                echo '<td>'.$row['email'].'</td>';
+                                echo '<td>'.$row['telefone'].'</td>';
+                                echo '<td><a class="btn btn-outline-danger" href="?delete='.$row['id'].'"><i class="fa-solid fa-trash"></i></a> | <a class="btn btn-outline-secondary" href="edit.php?id='.$row['id'].'"><i class="fa-solid fa-pen"></i></a></td>';
+                                echo '</tr>';
+                                $count++;
+                            }
+                        } else {
+                            echo '<tr>';
+                            echo '<td colspan="5">Nenhum registro encontrado</td>';
+                            echo '</tr>';
+                        }
+                    ?>
+                </tr>
+            </tbody>
+        </table>
     </div>
+    <a href="index.php" class="btn btn-outline-primary" style="position: absolute; right: 1rem; top: 1rem;"><i class="fa-solid fa-right-from-bracket"></i></a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous" defer></script>
 </body>
 </html>
