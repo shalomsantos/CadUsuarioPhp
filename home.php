@@ -6,6 +6,8 @@
     <!-- meu css e js -->
     <link rel="stylesheet" href="/css/style.css">
     <script type="text/javascript" src="/js/script.js" defer></script>
+    <!-- jquey -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" defer></script>
     <!-- boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" defer>
     <!-- fontwasome -->
