@@ -87,7 +87,6 @@
                     <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Senha confirm:" required value="<?php if(isset($result_user['senha'])){echo $result_user['senha'];} ?>">
                     <div>
                         <button class="btn btn-outline-success" type="submit" name="submit" id="submit" onclick="SenhaConfirm(event)">Adicionar</button>
-                        <button class="btn btn-outline-primary" type="submit" name="editar" id="editar">Editar</button>
                         <button class="btn btn-outline-primary" type="button" onclick="Clean()" id="limpar"><i class="fa-solid fa-broom"></i></button>
                     </div>
                 </div>

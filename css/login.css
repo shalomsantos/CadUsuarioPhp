@@ -16,18 +16,21 @@ body{
     height: 100%;
     background-image: linear-gradient(#31B3EA,#B278ED, #F4505D);
 }
-main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+span{
+    /* display: none; */
+    background-image: linear-gradient(#31B3EA,#B278ED, #F4505D);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    color: white;
+
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
 }
-.centro{
+.register{
     width: 20rem;
+}
+.bg-trans-blur{
     background-color: rgba(255, 255, 255, 0.509) !important;
     background-filter: blur(20px);
-}
-.card{
-    padding: 2rem;
-    
 }

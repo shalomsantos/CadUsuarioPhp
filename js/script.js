@@ -20,15 +20,17 @@ function Clean() {
     passwordInput.value = "";
     confirmPasswordInput.value = "";
 }
-$("#limpar").click(function() {
-    alert('jquery acionado');
-});
-// $("#msg").text(function() {
-//     var msg = $("#msg").text();
-//     console.log(msg.text());
-//     // if(msg.text() = ''){
-//     //     msg.addClass('active');
-//     // }else{
-//     //     msg.removeClass('active');
-//     // }
-// });
+function register() {
+    
+    const register = document.querySelector('.register')
+    const entrar = document.querySelector('.entrar')
+
+    if(register.style.display == 'none'){
+        register.style.display = 'block';
+        entrar.disabled = true
+    }else{
+        register.style.display = 'none';
+        entrar.disabled = false
+    }
+
+}
