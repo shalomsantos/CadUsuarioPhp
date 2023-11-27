@@ -6,10 +6,9 @@
     <!-- meu css e js -->
     <link rel="stylesheet" href="/css/style.css">
     <script type="text/javascript" src="/js/script.js" defer></script>
-    <!-- jquey -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" defer></script>
     <!-- boostrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" defer>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous" defer></script>
     <!-- fontwasome -->
     <script src="https://kit.fontawesome.com/c3cffe3b5e.js" crossorigin="anonymous" defer></script>
     <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon" />
@@ -102,13 +101,12 @@
                     <input type="password" name="password" id="password" class="form-control" placeholder="Senha" required value="<?php if(isset($result_user['senha'])){echo $result_user['senha'];} ?>">
                     <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Senha confirm:" required value="<?php if(isset($result_user['senha'])){echo $result_user['senha'];} ?>">
                     <div>
-                        <button class="btn btn-outline-primary" type="submit" name="editar" id="editar">Editar</button>
+                        <button class="btn btn-outline-primary" type="submit" name="editar" id="editar" onclick="SenhaConfirm(event)">Editar</button>
                         <button class="btn btn-outline-primary" type="button" onclick="Clean()" id="limpar"><i class="fa-solid fa-broom"></i></button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous" defer></script>
 </body>
 </html>

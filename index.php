@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- meu css e js -->
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/style.css">
     <script type="text/javascript" src="/js/script.js" defer></script>
     <!-- boostrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous" defer></script>
+    
     <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon" />
     <title>.::LOGIN::.</title>
 </head>
-<body class="d-flex justify-content-center align-items-center">
-    <main class="d-flex rounded-2 overflow-hidden">
+<body>
+    <main class="w-100 d-flex align-items-center justify-content-center">
         <span id="msg">
             <?php
                 // importando arquivo de conexão
@@ -54,28 +55,12 @@
                 }       
             ?>
         </span>
-        <div class="bg-trans-blur d-flex align-items-center p-4 order-2">
-            <form action="index.php" method="POST" class="d-flex flex-column gap-2 text-center">
-                <h1>Login</h1>
-                <input type="email" name="email" id="email" class="form-control" placeholder="E-mail:">
-                <input type="password" name="password" id="password" class="form-control" placeholder="Senha:">
-                <button type="submit" name="submit" id="submit" class="btn btn-success entrar">Entrar</button>
-                <a href="#" id="register" onClick="register()">Criar conta</a>
-                <!-- VOU TER QUE CRIAR UM TELA DE CADASTRO, NA HOME PRECISO MONTAR O UM PAINEL PARA VISIALIZAR OS USUARIOS E REDIRECIONAR PARA CADASTRO OU RETORNAR AO LOGIN -->
-                <!-- <a class="btn btn-outline-secondary" href="edit.php?id='.$row['id'].'"><i class="fa-solid fa-pen"></i></a> -->
-            </form>
-        </div>
-        <div class="register bg-trans-blur p-4 order-1" style="display: none;">
-            <form action="" method="" class="d-flex flex-column gap-2 text-center">
-                <h1>Register</h1>
-                <input type="name" name="nome" id="nome" class="form-control" placeholder="Nome:">
-                <input type="email" name="email" id="email" class="form-control" placeholder="E-mail:">
-                <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="Telefone:">
-                <input type="password" name="password" id="password" class="form-control" placeholder="Senha:">
-                <input type="confirm" name="confirm" id="confirm" class="form-control" placeholder="Confirm senha:">
-                <button class="btn btn-outline-success">Registrar</button>
-            </form>
-        </div>
+        <form action="index.php" method="POST" class="d-flex flex-column gap-2 text-center" style="width: 15rem;">
+            <h1><strong>Login</strong></h1>
+            <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="E-mail:">
+            <input type="password" name="password" id="password" class="form-control form-control-sm" placeholder="Senha:">
+            <button type="submit" name="submit" id="submit" class="btn btn-success btn-sm entrar">Entrar</button>
+        </form>
     </main>
 </body>
 </html>
