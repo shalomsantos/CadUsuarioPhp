@@ -1,7 +1,7 @@
 <?php
 //classe conexão.
 class Connection  {
-    private static $dbhost = 'localhost';
+    private static $dbhost = 'mysql';
     private static $dbname = 'basicus';
     private static $user = 'root';
     private static $password = '';

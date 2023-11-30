@@ -35,3 +35,13 @@ function register() {
 
 }
 
+var nameInput = document.getElementById("msg");
+// console.log("valor:" + nameInput.value);
+if (nameInput.innerText == ''){
+    nameInput.classList.add("d-none");
+}
+else{
+    nameInput.classList.add("d-block");
+}
+
+

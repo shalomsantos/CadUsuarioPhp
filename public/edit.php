@@ -90,7 +90,7 @@
         </span>
         <form action="edit.php" method="POST">
             <h1 class="text-center">Adicionar usuário</h1>
-            <div class="col-6 container d-flex p-2">
+            <div class="container d-flex p-2">
                 <div class="col-6 d-flex flex-column me-2" style="gap: 1rem;">
                     <input type="text" name="id" id="id" class="form-control" placeholder="id:" required value="<?php if(isset($result_user['id'])){echo $result_user['id'];} ?>" style="visibility: hidden; display: none;">
                     <input type="text" name="name" id="name" class="form-control" placeholder="Nome:" required value="<?php if(isset($result_user['nome'])){echo $result_user['nome'];} ?>">
