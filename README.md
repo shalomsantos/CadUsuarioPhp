@@ -1,4 +1,8 @@
-# PHP + MYSQL + Docker
+# Skills Back-end
+## Php + Mysql + Docker
+
+# Skills Front-end
+## Bootstrap + fontwasome
 
 ## Autor
 
@@ -6,15 +10,14 @@
 
 ## Requisitos
 
-- xampp
-- Editor de texto(sugestão:. VS CODE)
+- Docker engine ou docker desktop.
+- IDE sugerida Vs Code.
 
 ## Build
 
-- Recortar ou copiar arquivos da pasta teste-aprendiz-backend/.
-- Colar arquivos na pasta C:\xampp\htdocs (substituindo arquivos contidos no diretório).
-- Identificar estrutura do banco especificada abaixo e replicar ao mysql.
-- Ligar Servidor apache e mysql no xampp e acessar localhost
+- ./CadUsuarioPhp
+- docker-compose up -d
+- localhost:8000
 
 # Estrutura de banco e tabela
 
