@@ -1,11 +1,13 @@
 # Skills Back-end
-## Php + Mysql + Docker
+- Php
+- Mysql
+- Docker
 
 # Skills Front-end
-## Bootstrap + fontwasome
+- Bootstrap
+- fontwasome
 
 ## Autor
-
 - [@Shalomsantos](https://github.com/shalomsantos)
 
 ## Requisitos
