@@ -1,4 +1,4 @@
-# XAMPP + PHP + MYSQL
+# PHP + MYSQL + Docker
 
 ## Autor
 
