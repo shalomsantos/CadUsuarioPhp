@@ -8,6 +8,9 @@ services:
         volumes:
             - '.:/application'
             - './phpdocker/mysql/db/:/var/lib/mysql'
+        command:
+            - 'mysql -u root -p'
+            - 'use basicus;'
         environment:
             - MYSQL_ALLOW_EMPTY_PASSWORD=true
         ports:
