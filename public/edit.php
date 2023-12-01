@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous" defer></script>
     <!-- fontwasome -->
     <script src="https://kit.fontawesome.com/c3cffe3b5e.js" crossorigin="anonymous" defer></script>
-    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="/img/docker.png" type="image/x-icon" />
     <title>.::PHP::.</title>
 </head>
 <body>
