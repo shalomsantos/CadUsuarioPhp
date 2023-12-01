@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+    mysql:
+        image: 'mysql:8.0'
+        container_name: mysql
+        working_dir: /application
+        volumes:
+            - '.:/application'
+            - './phpdocker/mysql/db/:/var/lib/mysql'
+        environment:
+            - MYSQL_ALLOW_EMPTY_PASSWORD=true
+        ports:
+            - '8002:3306'
+
+    webserver:
+        image: 'nginx:alpine'
+        container_name: nginx
+        working_dir: /application
+        volumes:
+            - '.:/application'
+            - './phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
+        ports:
+            - '8000:80'
+
+    php-fpm:
+        build: phpdocker/php-fpm
+        container_name: php
+        working_dir: /application
+        volumes:
+            - '.:/application'
+            - './phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/8.2/fpm/conf.d/99-overrides.ini'
